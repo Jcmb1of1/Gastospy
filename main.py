@@ -1,20 +1,24 @@
 import matplotlib.pyplot as plt
 from datetime import date
 from time import sleep as s
-from defs import limpador_de_tela
+from defs import limpador_de_tela, continuador
 
-#todas as variáveis constantes do projeto:
+#as variáveis constantes do projeto:
 
 sal = float(input('Salário:\n'))
 limpador_de_tela()
 
-ali = tp = lz = gt = 0
+ali = tp = lz = gt = agua = luz = escola = internet = 0
 
 g = {
     'Transporte': tp,
     'Aliimentação': ali,
     'Lazer': lz,
-    'Gastos totais': gt
+    'Gastos totais': gt,
+    'Conta de luz': luz,
+    'Conta de internet': internet,
+    'Conta de água': agua,
+    'Escola/Faculdade': escola
 }
 
 while True:
@@ -32,27 +36,37 @@ while True:
     if user == 1:
         limpador_de_tela()
         print('Qual tipo de gasto?')
-        tipo = int(input('[1]Transporte\n[2]Alimentação\n[3]Lazer\n[4]Gastos Fixos'))
+        tipo = int(input('[1]Transporte\n[2]Alimentação\n[3]Lazer\n'))
         if tipo == 1:
             limpador_de_tela()
             qtgast = float(input('Insira a quantidade gasta:\n'))
             tp += qtgast
             gt += qtgast
+            esc = continuador()
+            if esc == 'n':
+                break
         elif tipo == 2:
             limpador_de_tela()
             qtgast = float(input('Insira a quantidade gasta:\n'))
             gt += qtgast
             ali += qtgast
+            esc = continuador()
+            if esc == 'n':
+                break
         elif tipo == 3:
             limpador_de_tela()
             qtgast = float(input('Insira a quantidade gasta:\n'))
             gt += qtgast
             lz += qtgast
-        elif tipo == 4:
-            nomegasto = str(input('Insira o nome da despesa:\n')).title()
-            g[nomegasto] = sum([float(input('Insira a quantidade gasta:\n'))])
+            esc = continuador()
+            if esc == 'n':
+                break
+
     elif user == 2:
         #ainda pensando como configurar matplotlib
+        porcentagens = [sal/sal * 100, tp/sal * 100, ali/sal * 100, lz/sal * 100 ]
+        plt.pie(porcentagens)
+        plt.show()
         print()
     elif user == 3:
         print('Saindo...')
