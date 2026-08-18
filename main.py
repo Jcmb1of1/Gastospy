@@ -29,14 +29,14 @@ while True:
 
 
     #escolha do usuário - o que ele quer fazer
-    user = int(input('[1]Adicionar gastos\n[2]Ver gastos\n[3]Sair do sistema'))
+    user = int(input('[1]Adicionar gastos\n[2]Ver gastos\n[3]Sair do sistema\n'))
 
 
     #escolha do usuário - que gasto ele quer adicionar
     if user == 1:
         limpador_de_tela()
         print('Qual tipo de gasto?')
-        tipo = int(input('[1]Transporte\n[2]Alimentação\n[3]Lazer\n'))
+        tipo = int(input('[1]Transporte\n[2]Alimentação\n'))
         if tipo == 1:
             limpador_de_tela()
             qtgast = float(input('Insira a quantidade gasta:\n'))
@@ -64,8 +64,10 @@ while True:
 
     elif user == 2:
         #ainda pensando como configurar matplotlib
-        porcentagens = [sal/sal * 100, tp/sal * 100, ali/sal * 100, lz/sal * 100 ]
-        plt.pie(porcentagens)
+        porcentagens = [sal/sal * 100, tp/sal * 100, ali/sal * 100, lz/sal * 100, agua/sal*100, escola/sal*100, luz/sal*100, internet/sal*100 ]
+        nomes = ['Salário', 'Transporte', 'Alimentação', 'Lazer', 'Conta de água', 'Escola/Faculdade', 'Conta de luz', 'Conta de internet']
+        plt.pie( porcentagens, labels=porcentagens)
+        plt.legend(labels=nomes, loc='upper left', bbox_to_anchor=(-0.4, 1.1))
         plt.show()
         print()
     elif user == 3:
