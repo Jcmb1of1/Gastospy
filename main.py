@@ -42,10 +42,12 @@ while True:
     #Opc mostra gráfico
     elif user == 2:
         porcentagens = np.array([sal - sum(g.values()), *g.values()])
-        nomes = ['Dinheiro restante', 'Transporte', 'Alimentação', 'Lazer', 'Conta de água', 'Escola/Faculdade', 'Conta de luz', 'Conta de internet']
+        nomes = ['Dinheiro restante', 'Transporte', 'Alimentação', 'Lazer', 'Conta de Luz', 'Internet', 'Conta de água', 'Escola/Faculdade']
         plt.pie(porcentagens, autopct=porcentador)
         plt.legend(labels=nomes, loc='upper left', bbox_to_anchor=(-0.4, 1.1))
         plt.title('Porcentagem de gastos', loc='center')
+        gerenciador = plt.get_current_fig_manager()
+        gerenciador.full_screen_toggle()
         plt.show()
         break
     #Opc que muda o salário do usuário.

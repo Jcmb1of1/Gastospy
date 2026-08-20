@@ -13,23 +13,26 @@ def continuador():
     return esc
 
 def adicionar(msg, saldef, tipo, dicionario):
-    a = float(input(msg))
-    if a > saldef:
-        print('Erro. Valor > Salário')
+    if tipo <= len(dicionario) and tipo > 0:
+        a = float(input(msg))
+        if a > saldef:
+            print('Erro. Valor > Salário')
+        else:
+            tipo = str(tipo)
+            nums = {
+                '1': 'Transporte',
+                '2': 'Alimentação',
+                '3': 'Lazer',
+                '4': 'Conta de água',
+                '5': 'Conta de luz',
+                '6': 'Escola/Faculdade',
+                '7': 'Internet'
+            }
+            dicionario[nums[tipo]] += a
+            print('Adicionado com sucesso')
+        return dicionario
     else:
-        tipo = str(tipo)
-        nums = {
-            '1': 'Transporte',
-            '2': 'Alimentação',
-            '3': 'Lazer',
-            '4': 'Conta de água',
-            '5': 'Conta de luz',
-            '6': 'Escola/faculdade',
-            '7': 'Internet'
-        }
-        dicionario[nums[tipo]] += a
-        print('Adicionado com sucesso')
-    return dicionario
+        print('Erro.')
 
 
 def tela_inicial():
