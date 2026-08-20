@@ -53,9 +53,3 @@ def porcentador(valor):
         return f'{valor:.2f}%'
     else:
         return ''
-
-
-
-
-
-

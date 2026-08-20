@@ -4,7 +4,7 @@ from defs import limpador_de_tela, continuador, adicionar, tela_inicial, saidors
 import numpy as np
 
 #as variáveis constantes do projeto:
-
+limpador_de_tela()
 sal = float(input('Salário:\n'))
 limpador_de_tela()
 
