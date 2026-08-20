@@ -45,6 +45,11 @@ def saidorsimples():
     print('Saindo...')
     s(1)
 
+def porcentador(valor):
+    if valor > 0:
+        return f'{valor:.2f}%'
+    else:
+        return ''
 
 
 

@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 from time import sleep as s
-from defs import limpador_de_tela, continuador, adicionar, tela_inicial, saidorsimples
+from defs import limpador_de_tela, continuador, adicionar, tela_inicial, saidorsimples, porcentador
 import numpy as np
 
 #as variáveis constantes do projeto:
@@ -32,7 +32,7 @@ while True:
         limpador_de_tela()
         print('Qual tipo de gasto?')
         # tipos de despesas
-        tipo = int(input('[1]Transporte\n[2]Alimentação[3]Lazer\n[4]Conta de água\n[5]Conta de luz\n[6]Mensalidade escolar\n[7]Internet\n'))
+        tipo = int(input('[1]Transporte\n[2]Alimentação\n[3]Lazer\n[4]Conta de água\n[5]Conta de luz\n[6]Mensalidade escolar\n[7]Internet\n'))
         g = adicionar('Insira o valor gasto:\n', tipo=tipo, saldef=sal, dicionario=g)
         esc = continuador()
         if esc == 'n':
@@ -41,10 +41,9 @@ while True:
 
     #Opc mostra gráfico
     elif user == 2:
-
-        porcentagens = np.array([100.0, *[ v / sal * 100 for k, v in g.items()]])
-        nomes = ['Salário', 'Transporte', 'Alimentação', 'Lazer', 'Conta de água', 'Escola/Faculdade', 'Conta de luz', 'Conta de internet']
-        plt.pie( porcentagens, labels=porcentagens)
+        porcentagens = np.array([sal - sum(g.values()), *g.values()])
+        nomes = ['Dinheiro restante', 'Transporte', 'Alimentação', 'Lazer', 'Conta de água', 'Escola/Faculdade', 'Conta de luz', 'Conta de internet']
+        plt.pie(porcentagens, autopct=porcentador)
         plt.legend(labels=nomes, loc='upper left', bbox_to_anchor=(-0.4, 1.1))
         plt.title('Porcentagem de gastos', loc='center')
         plt.show()
