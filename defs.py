@@ -1,5 +1,3 @@
-
-
 def limpador_de_tela():
     import os
     os.system('cls')
@@ -14,14 +12,24 @@ def continuador():
             print('Digite apenas S ou N.')
     return esc
 
-def adicionar(msg, var, saldef):
+def adicionar(msg, saldef, tipo, dicionario):
     a = float(input(msg))
     if a > saldef:
         print('Erro. Valor > Salário')
     else:
-        var += a
+        tipo = str(tipo)
+        nums = {
+            '1': 'Transporte',
+            '2': 'Alimentação',
+            '3': 'Lazer',
+            '4': 'Conta de água',
+            '5': 'Conta de luz',
+            '6': 'Escola/faculdade',
+            '7': 'Internet'
+        }
+        dicionario[nums[tipo]] += a
         print('Adicionado com sucesso')
-    return var
+    return dicionario
 
 
 def tela_inicial():
@@ -31,5 +39,15 @@ def tela_inicial():
     print('-' * 30)
     print('GERENCIADOR DE GASTOS SIMPLES')
     print('-' * 30)
+
+def saidorsimples():
+    from time import sleep as s
+    print('Saindo...')
+    s(1)
+
+
+
+
+
 
 
