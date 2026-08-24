@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-from time import sleep as s
 from defs import limpador_de_tela, continuador, adicionar, tela_inicial, saidorsimples, porcentador, Rendador, NovaRenda
 import numpy as np
 
@@ -33,7 +32,7 @@ while True:
         print('Qual tipo de gasto?')
         # tipos de despesas
         tipo = int(input('[1]Transporte\n[2]Alimentação\n[3]Lazer\n[4]Conta de água\n[5]Conta de luz\n[6]Mensalidade escolar\n[7]Internet\n'))
-        g = adicionar('Insira o valor gasto:\n', tipo=tipo, saldef=sal, dicionario=g)
+        g = adicionar('Insira o valor gasto:\n', tipo=tipo, saldef=renda, dicionario=g)
         esc = continuador()
         if esc == 'n':
             saidorsimples()
