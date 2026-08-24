@@ -53,3 +53,36 @@ def porcentador(valor):
         return f'{valor:.2f}%'
     else:
         return ''
+
+def Rendador():
+    try:
+        with open('renda.txt', 'r') as salario:
+            valor = salario.read()
+            return float(valor)
+    except (FileNotFoundError, ValueError):
+        valor = LeiaDinheiro('Digite seu sálario')
+        with open('renda.txt', 'w') as salario:
+            salario.write(str(valor))
+        return valor
+
+def NovaRenda():
+    a = LeiaDinheiro('Digite sua nova renda:\n')
+    with open('renda.txt', 'w') as salario:
+        salario.write(str(a))
+        return a
+
+
+def LeiaDinheiro(msg):
+    while True:
+        valor = input(msg)
+        if ',' in valor:
+            antesvi, depoisvi = valor.split(',')
+            if antesvi.isnumeric() and depoisvi.isnumeric():
+                valor = '.'.join([antesvi, depoisvi])
+                valor = float(valor)
+                return valor
+        elif valor.isnumeric():
+            valor = float(valor)
+            return valor
+        else:
+            print(f'{valor} é inválido')

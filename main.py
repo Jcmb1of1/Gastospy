@@ -1,11 +1,11 @@
 import matplotlib.pyplot as plt
 from time import sleep as s
-from defs import limpador_de_tela, continuador, adicionar, tela_inicial, saidorsimples, porcentador
+from defs import limpador_de_tela, continuador, adicionar, tela_inicial, saidorsimples, porcentador, Rendador, NovaRenda
 import numpy as np
 
 #as variáveis constantes do projeto:
 limpador_de_tela()
-sal = float(input('Salário:\n'))
+renda = Rendador()
 limpador_de_tela()
 
 ali = tp = lz = agua = luz = escola = internet = 0
@@ -41,7 +41,7 @@ while True:
 
     #Opc mostra gráfico
     elif user == 2:
-        porcentagens = np.array([sal - sum(g.values()), *g.values()])
+        porcentagens = np.array([renda - sum(g.values()), *g.values()])
         nomes = ['Dinheiro restante', 'Transporte', 'Alimentação', 'Lazer', 'Conta de Luz', 'Internet', 'Conta de água', 'Escola/Faculdade']
         plt.pie(porcentagens, autopct=porcentador)
         plt.legend(labels=nomes, loc='upper left', bbox_to_anchor=(-0.4, 1.1))
@@ -53,7 +53,7 @@ while True:
     #Opc que muda o salário do usuário.
 
     elif user == 3:
-        sal = float(input('Novo salário:\n'))
+        renda = NovaRenda()
         esc = continuador()
         if esc == 'n':
             saidorsimples()
