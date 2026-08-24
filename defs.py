@@ -56,19 +56,19 @@ def porcentador(valor):
 
 def Rendador():
     try:
-        with open('renda.txt', 'r') as salario:
-            valor = salario.read()
+        with open('renda.txt', 'r') as renda:
+            valor = renda.read()
             return float(valor)
     except (FileNotFoundError, ValueError):
         valor = LeiaDinheiro('Digite seu sálario')
-        with open('renda.txt', 'w') as salario:
-            salario.write(str(valor))
+        with open('renda.txt', 'w') as renda:
+            renda.write(str(valor))
         return valor
 
 def NovaRenda():
     a = LeiaDinheiro('Digite sua nova renda:\n')
-    with open('renda.txt', 'w') as salario:
-        salario.write(str(a))
+    with open('renda.txt', 'w') as renda:
+        renda.write(str(a))
         return a
 
 
