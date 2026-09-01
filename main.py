@@ -24,48 +24,50 @@ while True:
     tela_inicial()
 
     #escolha do usuário - o que ele quer fazer
-    user = int(input('[1]Adicionar gastos\n[2]Ver gastos\n[3]Alterar salário\n[4]Sair do sistema\n'))
+    user = int(input('[1]Adicionar gastos\n[2]Ver gastos\n[3]Alterar renda\n[4]Sair do sistema\n'))
 
     #escolha do usuário - que gasto ele quer adicionar
-    if user == 1:
-        limpador_de_tela()
-        print('Qual tipo de gasto?')
-        # tipos de despesas
-        tipo = int(input('[1]Transporte\n[2]Alimentação\n[3]Lazer\n[4]Conta de água\n[5]Conta de luz\n[6]Mensalidade escolar\n[7]Internet\n'))
-        g = adicionar('Insira o valor gasto:\n', tipo=tipo, saldef=renda, dicionario=g)
-        esc = continuador()
-        if esc == 'n':
+    match user:
+        case 1:
+            limpador_de_tela()
+            print('Qual tipo de gasto?')
+            # tipos de despesas
+            tipo = int(input('[1]Transporte\n[2]Alimentação\n[3]Lazer\n[4]Conta de água\n[5]Conta de luz\n[6]Mensalidade escolar\n[7]Internet\n'))
+            g = adicionar('Insira o valor gasto:\n', tipo=tipo, saldef=renda, dicionario=g)
+            esc = continuador()
+            if esc == 'n':
+                saidorsimples()
+                break
+
+        #Opc mostra gráfico
+        case 2:
+            porcentagens = np.array([renda - sum(g.values()), *g.values()])
+            nomes = ['Dinheiro restante', 'Transporte', 'Alimentação', 'Lazer', 'Conta de Luz', 'Internet', 'Conta de água', 'Escola/Faculdade']
+            plt.pie(porcentagens, autopct=porcentador)
+            plt.legend(labels=nomes, loc='upper left', bbox_to_anchor=(-0.4, 1.1))
+            plt.title('Porcentagem de gastos', loc='center')
+            gerenciador = plt.get_current_fig_manager()
+            gerenciador.full_screen_toggle()
+            plt.show()
+            break
+        #Opc que muda o salário do usuário.
+
+        case 3:
+            print(f'Renda atual: {renda}')
+            renda = NovaRenda()
+            esc = continuador()
+            if esc == 'n':
+                saidorsimples()
+                break
+
+        #Opc que termina a execução do programa.
+        case 4:
+            limpador_de_tela()
             saidorsimples()
             break
 
-    #Opc mostra gráfico
-    elif user == 2:
-        porcentagens = np.array([renda - sum(g.values()), *g.values()])
-        nomes = ['Dinheiro restante', 'Transporte', 'Alimentação', 'Lazer', 'Conta de Luz', 'Internet', 'Conta de água', 'Escola/Faculdade']
-        plt.pie(porcentagens, autopct=porcentador)
-        plt.legend(labels=nomes, loc='upper left', bbox_to_anchor=(-0.4, 1.1))
-        plt.title('Porcentagem de gastos', loc='center')
-        gerenciador = plt.get_current_fig_manager()
-        gerenciador.full_screen_toggle()
-        plt.show()
-        break
-    #Opc que muda o salário do usuário.
-
-    elif user == 3:
-        renda = NovaRenda()
-        esc = continuador()
-        if esc == 'n':
-            saidorsimples()
-            break
-
-    #Opc que termina a execução do programa.
-    elif user == 4:
-        limpador_de_tela()
-        saidorsimples()
-        break
-
-    else:
-        limpador_de_tela()
-        print('Opção Invalida')
+        case _:
+            limpador_de_tela()
+            print('Opção Invalida')
 
 
